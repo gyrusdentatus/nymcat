@@ -16,7 +16,7 @@ Key features:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/nymcat.git
+git clone https://github.com/gyrusdentatus/nymcat.git
 cd nymcat
 
 # Build the application
@@ -31,7 +31,7 @@ cargo build --release
 ### Creating a chat room
 
 ```bash
-nymcat create
+nymcat create -vvv
 ```
 
 This will output a Nym address for your chat room in the format:
@@ -42,12 +42,12 @@ Room created. Address: nym://HQv8fYN7NaQJmJfMpemF7KCw86XPVP7jgPED1SkjC1Hn.HyWwPs
 ### Joining a chat room
 
 ```bash
-nymcat join <room-address> <username>
+nymcat join <room-address> <username> -vvv
 ```
 
 For example:
 ```bash
-nymcat join nym://HQv8fYN7NaQJmJfMpemF7KCw86XPVP7jgPED1SkjC1Hn.HyWwPsvupewvcdeJ8c2Ppo9no5nrvhbezBTU1jQa8cmc@7ntzmDZRvG4a1pnDBU4Bg1RiAmLwmqXV5sZGNw68Ce14 Alice
+nymcat join nym://HQv8fYN7NaQJmJfMpemF7KCw86XPVP7jgPED1SkjC1Hn.HyWwPsvupewvcdeJ8c2Ppo9no5nrvhbezBTU1jQa8cmc@7ntzmDZRvG4a1pnDBU4Bg1RiAmLwmqXV5sZGNw68Ce14 Alice -vvv
 ```
 
 ### Chatting
