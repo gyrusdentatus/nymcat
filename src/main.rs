@@ -2,8 +2,9 @@
 mod common;
 mod simple;
 
-use common::LogLevel;
+use common::{Colors, LogLevel, separator};
 use std::env;
+use std::io::Write;
 
 fn get_verbosity(args: &[String]) -> LogLevel {
     for arg in args {
@@ -31,9 +32,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let args: Vec<String> = env::args().collect();
     
     if args.len() < 2 {
-        eprintln!("Usage: 
-    {} create [--env <env_file>] [-v|-vv|-vvv]
-    {} join <address> <username> [--env <env_file>] [-v|-vv|-vvv]", args[0], args[0]);
+        print_usage(&args[0]);
         return Ok(());
     }
 
@@ -47,7 +46,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         
         "join" => {
             if args.len() < 4 {
-                eprintln!("Usage: {} join <address> <username> [--env <env_file>] [-v|-vv|-vvv]", args[0]);
+                print_usage(&args[0]);
                 return Ok(());
             }
             
@@ -58,12 +57,30 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         },
         
         _ => {
-            eprintln!("Unknown command: {}", args[1]);
-            eprintln!("Usage: 
-    {} create [--env <env_file>] [-v|-vv|-vvv]
-    {} join <address> <username> [--env <env_file>] [-v|-vv|-vvv]", args[0], args[0]);
+            print_usage(&args[0]);
         }
     }
     
     Ok(())
+}
+
+fn print_usage(program_name: &str) {
+    println!("\n{}", separator(Some("Usage"), 80));
+    println!("{}Error:{} Invalid command or arguments\n", Colors::RED, Colors::RESET);
+    
+    println!("{}Create a chat room:{}", Colors::BRIGHT_YELLOW, Colors::RESET);
+    println!("    {} create [--env <env_file>] [-v|-vv|-vvv]", program_name);
+    
+    println!("\n{}Join a chat room:{}", Colors::BRIGHT_YELLOW, Colors::RESET);
+    println!("    {} join <address> <username> [--env <env_file>] [-v|-vv|-vvv]", program_name);
+    
+    println!("\n{}Verbosity levels:{}", Colors::BRIGHT_YELLOW, Colors::RESET);
+    println!("    -v    Info messages");
+    println!("    -vv   Debug messages");
+    println!("    -vvv  Trace messages (detailed)");
+    
+    println!("\n{}Additional options:{}", Colors::BRIGHT_YELLOW, Colors::RESET);
+    println!("    --env <file>  Specify Nym network environment file");
+    
+    println!("{}\n", separator(None, 80));
 }
