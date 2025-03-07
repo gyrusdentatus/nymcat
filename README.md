@@ -11,6 +11,9 @@ Key features:
 - **Zero-knowledge messaging**: No central server knows who is communicating with whom
 - **Works behind NAT**: No port forwarding or public IP required
 - **Terminal UI**: Simple interface accessible from any terminal
+![image](https://github.com/user-attachments/assets/6914b86c-5536-43d7-86f8-b530f9a6bace)
+
+<img width="1369" alt="image" src="https://github.com/user-attachments/assets/97db20ae-4411-4283-9856-062ec8e447f8" />
 
 ## Installation
 
